@@ -1,11 +1,10 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="PTT">
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
     </style>
 
     <script type="text/javascript"
@@ -18,11 +17,7 @@
 
   </head>
   <body>
-    <div id="search-input">
-      <input type='text' id='from-input' value='muenchen hauptbahnhof'/>
-      <input type='text' id='to-input' value='muenchen allianz arena'/>
-      <input type="button" name="Calc" id='calc-button'/>
-    </div>
-    <div id="map-canvas"/>
+    <h1>Public Transport Transfer Helper</h1>
+    <div ng-view></div>
   </body>
 </html>

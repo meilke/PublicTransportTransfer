@@ -1,6 +1,7 @@
 ﻿require.config({
     paths: {
         angular: 'angular.min',
+        angularresource: 'angular-resource.min',
         jqueryUI: 'jquery-ui',
         jqueryColorbox: 'jquery-colorbox',
         jquery: 'jquery',
@@ -9,6 +10,10 @@
         reactive: 'rx'
     },
     shim: {
+        angularresource: {
+            deps: ['angular'],
+            exports: 'angularresource'
+        },
         angular: {
             deps: ['jquery', 'jqueryUI', 'jqueryColorbox'],
             exports: 'angular'
@@ -23,18 +28,36 @@
 });
 
 require([
+    'angular',
+    'angularresource',
+    'ptt',
     'domReady',
     'jquery',
+    'controllers/searchController',
+    'controllers/addController',
     'maps'
   ],
-  function (domReady, jquery, maps) {
+  function (angular, angularresource, ptt, domReady, jquery, maps) {
       'use strict';
 
+      ptt.config(['$routeProvider',
+        function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'search.html',
+                    controller: 'SearchCtrl'
+                })
+                .when('/add', {
+                    templateUrl: 'add.html',
+                    controller: 'AddCtrl'
+                })
+                .otherwise({ redirectTo: '/' });;
+        }
+      ]);
+
       domReady(function () {
-        initializeMap(document.getElementById("map-canvas"));
-        $( "#calc-button" ).click(function() {
-          calcRoute(document.getElementById("from-input").value, document.getElementById("to-input").value);
-        });
+        angular.bootstrap(document, ['PTT']);
+        $('html').addClass('ng-app: PTT');
       });
   }
 );

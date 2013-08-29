@@ -1,0 +1,57 @@
+<div>
+	<h2>Add new transfer hint</h2>
+
+	<form name="myForm">
+      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <label>Pre-transfer destination</label>
+        <input type="text" name="preDest" ng-model="transfer.preDestination" required>
+        <span ng-show="myForm.name.$error.required" class="help-inline">
+        	Required
+        </span>
+      </div>
+
+      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <label>Pre-transfer line</label>
+        <input type="text" name="preLine" ng-model="transfer.preLine" required>
+        <span ng-show="myForm.name.$error.required" class="help-inline">
+        	Required
+        </span>
+      </div>
+
+      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <label>Post-transfer departure</label>
+        <input type="text" name="postDep" ng-model="transfer.postDeparture" required>
+        <span ng-show="myForm.name.$error.required" class="help-inline">
+        	Required
+        </span>
+      </div>
+
+      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <label>Post-transfer line</label>
+        <input type="text" name="postLine" ng-model="transfer.postLine" required>
+        <span ng-show="myForm.name.$error.required" class="help-inline">
+        	Required
+        </span>
+      </div>
+
+      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <label>Transfer hint</label>
+        
+        <select name="hint" ng-model="transfer.hint" required>
+		      <option>Front</option>
+		      <option>Center</option>
+		      <option>Back</option>
+		    </select>
+
+        <span ng-show="myForm.name.$error.required" class="help-inline">
+        	Required
+        </span>
+      </div>
+    
+      <br>
+      <a href="#/" class="btn">Cancel</a>
+      <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
+              class="btn btn-primary">Save</button>
+    </form>
+
+</div>

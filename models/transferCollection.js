@@ -11,8 +11,8 @@ TransferCollection.prototype.insertTransfer = function (transfer, callback) {
 
   MongoClient.connect(this.dbConnectionString, function (err, client) {
     client.collection('transfercollection').insert(transfer, function (err, result) {
-      	callback(err, transfer);
-	  	client.close();
+    	callback(err, transfer);
+  		client.close();
     });
   });
 };
@@ -21,10 +21,10 @@ TransferCollection.prototype.getTransferById = function (id, callback) {
 	
 	var testdata = {
 		preDestination: 'Sendlinger Tor',
-		postDestination: 'Sendlinger Tor',
+		postDeparture: 'Sendlinger Tor',
 		preLine: 'U6',
 		postLine: 'U6',
-		transferHelp: 'Center'
+		transferHint: 'Center'
 	};
 
 	callback(null, testdata);
@@ -35,10 +35,10 @@ TransferCollection.prototype.queryTransfers = function (query, callback) {
 	var testdata = [
 		{
 			preDestination: 'Sendlinger Tor',
-			postDestination: 'Sendlinger Tor',
+			postDeparture: 'Sendlinger Tor',
 			preLine: 'U6',
 			postLine: 'U6',
-			transferHelp: 'Center'
+			transferHint: 'Center'
 		}
 	];
 
