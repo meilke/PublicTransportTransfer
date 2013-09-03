@@ -79,7 +79,7 @@ function showTransfer(response) {
 
     $.ajax({
         type: 'POST',
-        url: "/rest/transfers/query",
+        url: "/rest/transfers/fullTransferQuery",
         data: {query: queryObjects}
     }).done(function(data) {
         // show transfer data

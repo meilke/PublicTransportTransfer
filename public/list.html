@@ -1,0 +1,25 @@
+<input type="text" ng-model="search" class="search-query" placeholder="Search">
+<table>
+  <thead>
+  <tr>
+    <th>Pre-Transfer Destination</th>
+    <th>Pre-Transfer Line</th>
+    <th>Post-Transfer Departure</th>
+    <th>Post-Transfer Line</th>
+    <th>Transfer Hint</th>
+    <th><a href="#/add">Add</a></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="transfer in transfers | filter:search ">
+    <td>{{transfer.preDestination}}</td>
+    <td>{{transfer.preLine}}</td>
+    <td>{{transfer.postDeparture}}</td>
+    <td>{{transfer.postLine}}</td>
+    <td>{{transfer.transferHint}}</td>
+    <td>
+      <a href="#/edit/{{transfer.id}}">Edit</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

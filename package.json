@@ -9,10 +9,6 @@
     "express": "3.3.5",
     "jade": "*",
     "mongodb": "*",
-    "node-uuid": "*",
-    "supervisor": "*",
-    "mocha": "*",
-    "supertest": "*",
-    "should": "*"
+    "node-uuid": "*"
   }
 }

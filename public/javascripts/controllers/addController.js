@@ -1,7 +1,7 @@
 define(['controllers/controllers'],
     function (controllers) {
         controllers.controller('AddCtrl',
-            ['$window', '$scope', '$resource', function ($window, $scope, $resource) {
+            ['$window', '$scope', '$location', '$resource', function ($window, $scope, $location, $resource) {
 
 								$scope.save = function() {
 							    var Transfer = $resource('/rest/transfers');
@@ -11,10 +11,11 @@ define(['controllers/controllers'],
 										postDeparture: this.transfer.postDeparture,
 										preLine: this.transfer.preLine,
 										postLine: this.transfer.postLine,
-										transferHint: this.transfer.hint
+										transferHint: this.transfer.transferHint
 									});
 								
 									newTransfer.$save();
+									$location.path('/list');
 							  };
 
             }]);

@@ -35,9 +35,14 @@ rest.SetTransferCollection(tc);
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+app.get('/rest/transfers/query', rest.QueryTransfers);
+app.post('/rest/transfers/fullTransferQuery', rest.GetFullTransfer);
+
 app.post('/rest/transfers', rest.AddNewTransfer);
-app.post('/rest/transfers/query', rest.FindTransfer);
 app.get('/rest/transfers/:id', rest.GetTransfer);
+app.put('/rest/transfers/:id', rest.UpdateTransfer);
+app.delete('/rest/transfers/:id', rest.DeleteTransfer);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -30,9 +30,52 @@ exports.GetTransfer = function(req, res) {
 
 };
 
-exports.FindTransfer = function(req, res) {
+exports.UpdateTransfer = function(req, res) {
 
-  transferCollection.queryTransfers(req.body, function (err, result) {
+  var id = req.params.id;
+
+  transferCollection.updateTransferById(req.body, function (err, result) {
+    if (err) {
+      res.status(404);
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+
+};
+
+exports.DeleteTransfer = function(req, res) {
+
+  var id = req.params.id;
+
+  transferCollection.deleteTransferById(id, function (err, result) {
+    if (err) {
+      res.status(404);
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+
+};
+
+exports.GetFullTransfer = function(req, res) {
+
+  transferCollection.getFullTransfer(req.body, function (err, result) {
+    if (err) {
+      res.status(404);
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+
+};
+
+exports.QueryTransfers = function(req, res) {
+
+  transferCollection.queryTransfers(req.query, function (err, result) {
     if (err) {
       res.status(404);
       res.send(err);

@@ -1,6 +1,4 @@
 <div>
-	<h2>Add new transfer hint</h2>
-
 	<form name="myForm">
       <div class="control-group" ng-class="{error: myForm.name.$invalid}">
         <label>Pre-transfer destination</label>
@@ -37,7 +35,7 @@
       <div class="control-group" ng-class="{error: myForm.name.$invalid}">
         <label>Transfer hint</label>
         
-        <select name="hint" ng-model="transfer.hint" required>
+        <select name="hint" ng-model="transfer.transferHint" required>
 		      <option>Front</option>
 		      <option>Center</option>
 		      <option>Back</option>
@@ -49,9 +47,11 @@
       </div>
     
       <br>
-      <a href="#/" class="btn">Cancel</a>
-      <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
+      <a href="#/list" class="btn">Cancel</a>
+      <button ng-click="save()" ng-disabled="myForm.$invalid"
               class="btn btn-primary">Save</button>
+      <button ng-click="destroy()"
+              ng-show="transfer.id" class="btn btn-danger">Delete</button>
     </form>
 
 </div>

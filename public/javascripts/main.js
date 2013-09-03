@@ -6,8 +6,7 @@
         jqueryColorbox: 'jquery-colorbox',
         jquery: 'jquery',
         domReady: 'domReady',
-        maps: 'maps',
-        reactive: 'rx'
+        maps: 'maps'
     },
     shim: {
         angularresource: {
@@ -35,6 +34,8 @@ require([
     'jquery',
     'controllers/searchController',
     'controllers/addController',
+    'controllers/editController',
+    'controllers/listController',
     'maps'
   ],
   function (angular, angularresource, ptt, domReady, jquery, maps) {
@@ -48,8 +49,16 @@ require([
                     controller: 'SearchCtrl'
                 })
                 .when('/add', {
-                    templateUrl: 'add.html',
+                    templateUrl: 'edit.html',
                     controller: 'AddCtrl'
+                })
+                .when('/edit/:transferId', {
+                    templateUrl: 'edit.html',
+                    controller: 'EditCtrl'
+                })
+                .when('/list', {
+                    templateUrl: 'list.html',
+                    controller: 'ListCtrl'
                 })
                 .otherwise({ redirectTo: '/' });;
         }
