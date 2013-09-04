@@ -7,7 +7,7 @@
 
 			<div class="control-group" ng-class="{error: myForm.start.$invalid}">
         <label>Start</label>
-        <input type="text" name="start" ng-model="route.start" required>
+        <input type="text" name="start" ng-model="route.start"required/>
         <span ng-show="myForm.start.$error.required" class="help-inline">
         	Required
         </span>
@@ -15,7 +15,7 @@
 
       <div class="control-group" ng-class="{error: myForm.end.$invalid}">
         <label>End</label>
-        <input type="text" name="end" ng-model="route.end" required>
+        <input type="text" name="end" ng-model="route.end" required/>
         <span ng-show="myForm.end.$error.required" class="help-inline">
         	Required
         </span>
@@ -26,5 +26,12 @@
 
 		</form>
 	</div>
+
+	<div ng-show="transfers">
+		<p ng-repeat="transfer in transfers">
+			<img src="images/{{transfer.transferHint}}.png"/>
+		</p>
+	</div>
+
 	<div id="map-canvas"/>
 </div>

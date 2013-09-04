@@ -23,7 +23,7 @@ function showRouteInMap(response) {
     directionsDisplay.setDirections(response);
 }
 
-function showTransfer(response) {
+function showTransfer(response, scope) {
 
     var steps = response.routes[0].legs[0].steps;
     var transitSteps = [];
@@ -69,7 +69,7 @@ function showTransfer(response) {
         url: "/rest/transfers/fullTransferQuery",
         data: {query: queryObjects}
     }).done(function(data) {
-        // show transfer data
+        scope.transfers = data;
     });
 
 }
@@ -79,19 +79,24 @@ define(['controllers/controllers'],
         controllers.controller('SearchCtrl',
             ['$window', '$scope', function ($window, $scope) {
 
-                initializeMap(document.getElementById("map-canvas"));
+            		$scope.route = {
+            			start: 'Muenchen Hauptbahnhof',
+            			end: 'Muenchen Allianz Arena'
+            		};
+
+            		initializeMap(document.getElementById("map-canvas"));
                 
                 $scope.calcRoute = function() {
 							  	var request = {
-								      origin: this.route.start,
-								      destination: this.route.end,
+								      origin: $scope.route.start,
+								      destination: $scope.route.end,
 								      travelMode: google.maps.TravelMode.TRANSIT
 								  };
 
 								  directionsService.route(request, function(response, status) {
 								    if (status == google.maps.DirectionsStatus.OK) {
 								      showRouteInMap(response);
-								      showTransfer(response);
+								      showTransfer(response, $scope);
 								    }
 								  });
 							  };

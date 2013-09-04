@@ -86,17 +86,16 @@ TransferCollection.prototype.queryTransfers = function (query, callback) {
 
 TransferCollection.prototype.getFullTransfer = function (query, callback) {
 
-	var testdata = [
-		{
-			preDestination: 'Sendlinger Tor',
-			postDeparture: 'Sendlinger Tor',
-			preLine: 'U6',
-			postLine: 'U6',
-			transferHint: 'Center'
-		}
-	];
+	var fullResult = [];
 
-	callback(null, testdata);
+	for (var i = 0; i < query.length; i++) {
+		var transfer = this.queryTransfers(query[i], function(err, result) {
+			fullResult.push(result[0]);
+			if (fullResult.length == query.length){
+				callback(null, fullResult);
+			}
+		});
+	};
 
 };
 
