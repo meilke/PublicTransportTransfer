@@ -32,6 +32,8 @@ require([
     'ptt',
     'domReady',
     'jquery',
+    'services/locationService',
+    'services/transferService',
     'controllers/searchController',
     'controllers/addController',
     'controllers/editController',

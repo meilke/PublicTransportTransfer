@@ -1,14 +1,12 @@
-define(['controllers/controllers'],
+define(['controllers/controllers', 'services/transferService'],
     function (controllers) {
         controllers.controller('ListCtrl',
-            ['$window', '$scope', '$resource', function ($window, $scope, $resource) {
+            ['$scope', 'TransferService', function ($scope, TransferService) {
 
-            	var Transfer = $resource('/rest/transfers/query');
-							
 							var query = {};
 							// var query = {transferHint: 'Center'};
 							
-							var transfers = Transfer.query(query, function() {
+							var transfers = TransferService.TransferQuery.query(query, function() {
 								$scope.transfers = transfers;
 							});
 

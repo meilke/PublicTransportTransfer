@@ -1,27 +1,26 @@
-define(['controllers/controllers'],
+define(['controllers/controllers', 
+				'services/locationService',
+				'services/transferService'],
     function (controllers) {
         controllers.controller('EditCtrl',
-            ['$window', '$scope', '$location', '$resource', '$routeParams', function ($window, $scope, $location, $resource, $routeParams) {
+            [	'$scope', '$routeParams', 
+            	'LocationService', 'TransferService', 
+            	function ($scope, $routeParams, LocationService, TransferService) {
 
-								var Transfer = $resource(
-									'/rest/transfers/:transferId', 
-									{transferId: '@id'},
-									{
-										update: {method: 'PUT'}
-									}
-								);
+								var t = TransferService
+													.Transfer
+													.get({transferId:$routeParams.transferId});
 
-								var t = Transfer.get({transferId:$routeParams.transferId});
 							  $scope.transfer = t;
 
 							  $scope.save = function() {
 							  	$scope.transfer.$update();
-							  	$location.path('/list');
+							  	LocationService.goToPath('/list');
 							  };
 
 							  $scope.destroy = function() {
 							  	$scope.transfer.$delete();
-							  	$location.path('/list');
+							  	LocationService.goToPath('/list');
 							  };
 
             }]);

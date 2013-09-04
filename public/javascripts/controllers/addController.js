@@ -1,12 +1,14 @@
-define(['controllers/controllers'],
-    function (controllers) {
-        controllers.controller('AddCtrl',
-            ['$window', '$scope', '$location', '$resource', function ($window, $scope, $location, $resource) {
+define(['controllers/controllers', 
+				'services/locationService', 
+				'services/transferService'],
+		function (controllers) {
+				controllers.controller('AddCtrl',
+						[	'$scope', 'LocationService', 'TransferService',
+							function ($scope, LocationService, TransferService) {
 
 								$scope.save = function() {
-							    var Transfer = $resource('/rest/transfers');
-			            
-			            var newTransfer = new Transfer({
+
+									var newTransfer = new TransferService.Transfer({
 										preDestination: this.transfer.preDestination,
 										postDeparture: this.transfer.postDeparture,
 										preLine: this.transfer.preLine,
@@ -15,8 +17,8 @@ define(['controllers/controllers'],
 									});
 								
 									newTransfer.$save();
-									$location.path('/list');
-							  };
+									LocationService.goToPath('/list');
+								};
 
-            }]);
+						}]);
 });
