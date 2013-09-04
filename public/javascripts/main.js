@@ -5,8 +5,7 @@
         jqueryUI: 'jquery-ui',
         jqueryColorbox: 'jquery-colorbox',
         jquery: 'jquery',
-        domReady: 'domReady',
-        maps: 'maps'
+        domReady: 'domReady'
     },
     shim: {
         angularresource: {
@@ -37,10 +36,9 @@ require([
     'controllers/searchController',
     'controllers/addController',
     'controllers/editController',
-    'controllers/listController',
-    'maps'
+    'controllers/listController'
   ],
-  function (angular, angularresource, ptt, domReady, jquery, maps) {
+  function (angular, angularresource, ptt, domReady, jquery) {
       'use strict';
 
       ptt.config(['$routeProvider',

@@ -4,8 +4,10 @@
   <tr>
     <th>Pre-Transfer Destination</th>
     <th>Pre-Transfer Line</th>
+    <th>Pre-Transfer Line Direction</th>
     <th>Post-Transfer Departure</th>
     <th>Post-Transfer Line</th>
+    <th>Post-Transfer Line Direction</th>
     <th>Transfer Hint</th>
     <th><a href="#/add">Add</a></th>
   </tr>
@@ -14,8 +16,10 @@
   <tr ng-repeat="transfer in transfers | filter:search ">
     <td>{{transfer.preDestination}}</td>
     <td>{{transfer.preLine}}</td>
+    <td>{{transfer.preLineDirection}}</td>
     <td>{{transfer.postDeparture}}</td>
     <td>{{transfer.postLine}}</td>
+    <td>{{transfer.postLineDirection}}</td>
     <td>{{transfer.transferHint}}</td>
     <td>
       <a href="#/edit/{{transfer.id}}">Edit</a>

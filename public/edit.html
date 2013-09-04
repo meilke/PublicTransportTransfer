@@ -1,38 +1,57 @@
 <div>
 	<form name="myForm">
-      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+      <div class="control-group" ng-class="{error: myForm.preDest.$invalid}">
         <label>Pre-transfer destination</label>
         <input type="text" name="preDest" ng-model="transfer.preDestination" required>
-        <span ng-show="myForm.name.$error.required" class="help-inline">
+        <span ng-show="myForm.preDest.$error.required" class="help-inline">
         	Required
         </span>
       </div>
 
-      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+      <div class="control-group" ng-class="{error: myForm.preLine.$invalid}">
         <label>Pre-transfer line</label>
         <input type="text" name="preLine" ng-model="transfer.preLine" required>
-        <span ng-show="myForm.name.$error.required" class="help-inline">
+        <span ng-show="myForm.preLine.$error.required" class="help-inline">
         	Required
         </span>
       </div>
 
-      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+      <div class="control-group" ng-class="{error: myForm.preLineDirection.$invalid}">
+        <label>Pre-transfer line direction</label>
+        <input type="text" name="preLineDirection" ng-model="transfer.preLineDirection" required>
+        <span ng-show="myForm.preLineDirection.$error.required" class="help-inline">
+          Required
+        </span>
+      </div>
+
+      <div class="control-group" ng-class="{error: myForm.postDep.$invalid}">
         <label>Post-transfer departure</label>
         <input type="text" name="postDep" ng-model="transfer.postDeparture" required>
-        <span ng-show="myForm.name.$error.required" class="help-inline">
+        <span ng-show="myForm.postDep.$error.required" class="help-inline">
         	Required
         </span>
+        <button ng-click="preDestForPostDep()" class="btn btn-primary">
+          Use pre-transfer destination
+        </button>
       </div>
 
-      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+      <div class="control-group" ng-class="{error: myForm.postLine.$invalid}">
         <label>Post-transfer line</label>
         <input type="text" name="postLine" ng-model="transfer.postLine" required>
-        <span ng-show="myForm.name.$error.required" class="help-inline">
+        <span ng-show="myForm.postLine.$error.required" class="help-inline">
         	Required
         </span>
       </div>
 
-      <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+      <div class="control-group" ng-class="{error: myForm.postLineDirection.$invalid}">
+        <label>Post-transfer line direction</label>
+        <input type="text" name="postLineDirection" ng-model="transfer.postLineDirection" required>
+        <span ng-show="myForm.postLineDirection.$error.required" class="help-inline">
+          Required
+        </span>
+      </div>
+
+      <div class="control-group" ng-class="{error: myForm.hint.$invalid}">
         <label>Transfer hint</label>
         
         <select name="hint" ng-model="transfer.transferHint" required>
@@ -41,7 +60,7 @@
 		      <option>Back</option>
 		    </select>
 
-        <span ng-show="myForm.name.$error.required" class="help-inline">
+        <span ng-show="myForm.hint.$error.required" class="help-inline">
         	Required
         </span>
       </div>

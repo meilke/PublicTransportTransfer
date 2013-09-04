@@ -18,6 +18,10 @@ define(['controllers/controllers',
 							  	LocationService.goToPath('/list');
 							  };
 
+							  $scope.preDestForPostDep = function() {
+							  	$scope.transfer.postDeparture = $scope.transfer.preDestination;
+							  };
+
 							  $scope.destroy = function() {
 							  	$scope.transfer.$delete();
 							  	LocationService.goToPath('/list');

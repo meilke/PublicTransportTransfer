@@ -10,8 +10,10 @@ var TransferCollection = function (dbConnectionString) {
     cloned.id = original.id;
     cloned.preDestination = original.preDestination;
     cloned.preLine = original.preLine;
+    cloned.preLineDirection = original.preLineDirection;
     cloned.postDeparture = original.postDeparture;
     cloned.postLine = original.postLine;
+    cloned.postLineDirection = original.postLineDirection;
     cloned.transferHint = original.transferHint;
 
     return cloned;
