@@ -9,7 +9,11 @@ define(['controllers/controllers',
 
 								var t = TransferService
 													.Transfer
-													.get({transferId:$routeParams.transferId});
+													.get({transferId:$routeParams.transferId}, function(result){
+														var test = 'test';
+													}, function(err){
+														var test = 'test';
+													});
 
 							  $scope.transfer = t;
 

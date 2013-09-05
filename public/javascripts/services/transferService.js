@@ -13,7 +13,14 @@ define(['services/services'],
                     }
                 ),
 
-                TransferQuery: $resource('/rest/transfers/query')
+                TransferQuery: $resource('/rest/transfers/query'),
+
+                FullTransfer: $resource(
+                    '/rest/transfers/fullTransferQuery',
+                    {},
+                    {
+                      queryFull: {method: 'POST'}
+                    })
 
             };
 

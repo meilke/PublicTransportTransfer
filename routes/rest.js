@@ -64,9 +64,6 @@ exports.GetFullTransfer = function(req, res) {
 
   transferCollection.getFullTransfer(req.body.query, function (err, result) {
     
-    console.log(result);
-    console.log(err);
-
     if (err) {
       res.status(404);
       res.send(err);

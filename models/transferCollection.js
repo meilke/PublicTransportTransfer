@@ -1,10 +1,4 @@
-var MongoClient = require('mongodb').MongoClient, 
-	guid = require('node-uuid');
-
-var TransferCollection = function (dbConnectionString) {
-  this.dbConnectionString = dbConnectionString;
-
-  this.cloneTransfer = function (original) {
+function cloneTransfer (original) {
     var cloned = {};
     
     cloned.id = original.id;
@@ -17,14 +11,19 @@ var TransferCollection = function (dbConnectionString) {
     cloned.transferHint = original.transferHint;
 
     return cloned;
-  };
+}
 
+var MongoClient = require('mongodb').MongoClient, 
+	guid = require('node-uuid');
+
+var TransferCollection = function (dbConnectionString) {
+  this.dbConnectionString = dbConnectionString;
 };
 
 TransferCollection.prototype.insertTransfer = function (transfer, callback) {
   var id = guid.v1();
 
-  var toBeInserted = this.cloneTransfer(transfer);
+  var toBeInserted = cloneTransfer(transfer);
 	toBeInserted.id = id;
 
   MongoClient.connect(this.dbConnectionString, function (err, client) {
@@ -48,7 +47,7 @@ TransferCollection.prototype.getTransferById = function (id, callback) {
 
 TransferCollection.prototype.updateTransferById = function (transfer, callback) {
 	
-	var toBeUpdated = this.cloneTransfer(transfer);
+	var toBeUpdated = cloneTransfer(transfer);
 
 	MongoClient.connect(this.dbConnectionString, function (err, client) {
     client.collection('transfercollection').update({'id': toBeUpdated.id}, toBeUpdated, function (err, result) {
@@ -86,12 +85,12 @@ TransferCollection.prototype.queryTransfers = function (query, callback) {
 
 TransferCollection.prototype.getFullTransfer = function (query, callback) {
 
-	var fullResult = [];
+	var fullResult = {result: []};
 
 	for (var i = 0; i < query.length; i++) {
 		var transfer = this.queryTransfers(query[i], function(err, result) {
-			fullResult.push(result[0]);
-			if (fullResult.length == query.length){
+			fullResult.result.push(cloneTransfer(result[0]));
+			if (fullResult.result.length == query.length){
 				callback(null, fullResult);
 			}
 		});

@@ -9,6 +9,9 @@
     "express": "3.3.5",
     "jade": "*",
     "mongodb": "*",
-    "node-uuid": "*"
+    "node-uuid": "*",
+    "passport": "*",
+    "passport-google": "*",
+    "connect-ensure-login": "*"
   }
 }
