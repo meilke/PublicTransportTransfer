@@ -6,9 +6,14 @@ define(['controllers/controllers', 'services/transferService'],
 							var query = {};
 							// var query = {transferHint: 'Center'};
 							
-							var transfers = TransferService.TransferQuery.query(query, function() {
-								$scope.transfers = transfers;
-							});
+							var transfers = TransferService.TransferQuery.query(
+								query, 
+								function(value, responseHeaders) {
+									$scope.transfers = transfers;
+								},
+								function(errorHttpResponse) {
+									$scope.problem = errorHttpResponse;
+								});
 
             }]);
 });

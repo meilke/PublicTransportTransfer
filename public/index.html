@@ -1,11 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-    </style>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzKKjtgcfRupEl2WqwvPoBoYf721vztO4&sensor=false">
@@ -17,9 +14,21 @@
 
   </head>
   <body>
-    <h1><a href='#/'>Public Transport Transfer Helper</a></h1>
-    <h2><a href='#/list'>Admin</a></h2>
-    <a href="/auth/google">Sign In with Google</a>
-    <div ng-view></div>
+
+    <div id="container">
+      <div id="header">
+        <div id="logo">
+          <a href='#/'>Public Transport Transfer Helper</a>
+        </div>
+        <div id="auth">
+          <a href="#/list">Admin</a>
+          <a href="/auth/google">Sign In with Google</a>
+          <a href="/auth/logout">Sign out</a>
+        </div>
+      </div>
+
+      <div ng-view></div>
+
+    </div>
   </body>
 </html>

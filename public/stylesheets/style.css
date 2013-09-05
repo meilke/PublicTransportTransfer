@@ -1,8 +1,75 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #F0F8FF;
 }
 
-a {
-  color: #00B7FF;
+a, label {
+  padding: 10px;
+  color:#00B7FF;
+  background-color: #FAFAFA;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FAFAFA;
+  background-color: #00B7FF;
+	text-decoration: none;
+}
+
+a:active {
+	color: #FAFAFA;
+  background-color: #00B7FF;
+	text-decoration: none;
+}
+
+div#container {
+	width: 800px;
+}
+
+div#header {
+	padding-bottom: 50px;
+}
+
+div#logo {
+	font-size: 18px;
+	width: 350px;
+	float: left;	
+}
+
+div#auth {
+	float: right;
+}
+
+div#search-container {
+	height: 200px;
+}
+
+div#map-canvas { 
+	height: 500px;
+	clear: both;
+}
+
+div#transfers { 
+	float: left;
+}
+
+.control-group {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+div#search-input {
+	float: left;
+}
+
+div#search-go {
+	float: left;
 }

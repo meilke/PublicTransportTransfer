@@ -1,37 +1,40 @@
 <div>
-	<style type="text/css">
-		#map-canvas { height: 500px }
-	</style>
-	<div id="search-input">
-		<form name="myForm">
+	
+  <div id="search-container">
 
-			<div class="control-group" ng-class="{error: myForm.start.$invalid}">
-        <label>Start</label>
-        <input type="text" name="start" ng-model="route.start"required/>
-        <span ng-show="myForm.start.$error.required" class="help-inline">
-        	Required
-        </span>
-      </div>
+    <div id="search-input">
+  		<form name="myForm">
 
-      <div class="control-group" ng-class="{error: myForm.end.$invalid}">
-        <label>End</label>
-        <input type="text" name="end" ng-model="route.end" required/>
-        <span ng-show="myForm.end.$error.required" class="help-inline">
-        	Required
-        </span>
-      </div>
+  			<div class="control-group" ng-class="{error: myForm.start.$invalid}">
+          <label>Start</label>
+          <input type="text" name="start" ng-model="route.start"required/>
+          <span ng-show="myForm.start.$error.required" class="help-inline">
+          	Required
+          </span>
+        </div>
 
-      <button ng-click="calcRoute()" ng-disabled="myForm.$invalid"
-              class="btn btn-primary">Go!</button>
+        <div class="control-group" ng-class="{error: myForm.end.$invalid}">
+          <label>End</label>
+          <input type="text" name="end" ng-model="route.end" required/>
+          <span ng-show="myForm.end.$error.required" class="help-inline">
+          	Required
+          </span>
+        </div>
 
-		</form>
-	</div>
+  		</form>
+  	</div>
 
-	<div ng-show="transfers">
-		<p ng-repeat="transfer in transfers">
-			<img ng-src="images/{{transfer.transferHint}}.png"/>
-		</p>
-	</div>
+    <div id="search-go">
+      <a ng-click="calcRoute()" ng-disabled="myForm.$invalid">Go!</a>
+    </div>
+
+  	<div ng-show="transfers" id="transfers">
+  		<p ng-repeat="transfer in transfers">
+  			<img ng-src="images/{{transfer.transferHint}}.png"/>
+  		</p>
+  	</div>
+    
+  </div>
 
 	<div id="map-canvas"/>
 </div>

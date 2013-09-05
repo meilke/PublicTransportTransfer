@@ -18,6 +18,9 @@ var MemoryStore = express.session.MemoryStore;
 var transferCollection = require('./models/transferCollection');
 var userCollection = require('./models/user');
 
+var app = express();
+app.set('port', process.env.PORT || 3000);
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -30,8 +33,8 @@ var userConnection = 'mongodb://localhost:27017/userdb';
 var User = new userCollection.UserCollection(userConnection);
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:3000/auth/google/return',
-    realm: 'http://localhost:3000/'
+    returnURL: 'http://localhost:' + app.get('port') + '/auth/google/return',
+    realm: 'http://localhost:' + app.get('port')
   },
   function(identifier, profile, done) {
     User.findUser({openId: identifier}, function(err, user) {
@@ -45,17 +48,12 @@ passport.use(new GoogleStrategy({
     		return done(null, false);	
       }
 
-      console.log('Creating new user...');
       User.createUser({identifier: identifier, profile: profile}, function (err, newUser) {});
       return done(null, false);	
     });
   }
 ));
 
-var app = express();
-
-// all environments
-app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -76,11 +74,6 @@ app.use(passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
 var connection = 'mongodb://localhost:27017/transferdb';
 var tc = new transferCollection.TransferCollection(connection);
 rest.SetTransferCollection(tc);
@@ -89,11 +82,15 @@ app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return', 
   passport.authenticate('google', { successReturnToOrRedirect: '/index.html',
                                     failureRedirect: '/index.html' }));
+app.get('/auth/logout', function(req, res){
+  req.logout();
+  res.redirect('/index.html');
+});
 
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-app.get('/rest/transfers/query', rest.QueryTransfers);
+app.get('/rest/transfers/query', ensureAuthenticated, rest.QueryTransfers);
 app.post('/rest/transfers/fullTransferQuery', rest.GetFullTransfer);
 
 app.post('/rest/transfers', ensureAuthenticated, rest.AddNewTransfer);
